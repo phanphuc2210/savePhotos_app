@@ -1,44 +1,44 @@
 import { FormGroup, Label } from "reactstrap"
 import Select from 'react-select';
 
+
 function SelectField(props) {
-
-    const {
-        field, form,
-        label, placeholder, options, disabled,
-    } = props
-    const { name, value, onChange, onBlur} = field
-    const selectedOption = options.find(option => option.value = value)
-
+    const { field, options, label, placeholder, disabled } = props;
+    const { name, value } = field;
     console.log(options);
+  
+    const selectedOption = options.find(option => option.value === value);
+  
     const handleSelectedOptionChange = (selectedOption) => {
-        const selectedValue = selectedOption ? selectedOption.value : selectedOption
-        console.log(selectedOption);
-        const changeEvent = {
-            target: {
-                name: name,
-                value: selectedValue
-            }
+      const selectedValue = selectedOption ? selectedOption.value : selectedOption;
+  
+      const changeEvent = {
+        target: {
+          name: name,
+          value: selectedValue
         }
-        field.onChange(changeEvent)
+      };
+      field.onChange(changeEvent);
     }
-
+  
     return (
-        <FormGroup>
-            {label && <Label for={name}>{label}</Label>}
-
-            <Select
-                id={name}
-                {...field}
-                // value={selectedOption}
-                onChange={handleSelectedOptionChange}
-
-                isDisabled={disabled || false}
-                placeholder={placeholder}
-                options={options}
-            />
-        </FormGroup>
-    )
-}
+      <FormGroup>
+        {label && <Label for={name}>{label}</Label>}
+  
+        <Select
+          id={name}
+          {...field}
+          value={selectedOption}
+          onChange={handleSelectedOptionChange}
+  
+          placeholder={placeholder}
+          isDisabled={disabled || false}
+          options={options}
+  
+        />
+      </FormGroup>
+    );
+  }
+  
 
 export default SelectField

@@ -1,12 +1,10 @@
-import { Button, FormGroup, Input, Label } from "reactstrap"
+import { Button, FormGroup, Label } from "reactstrap"
 import { PHOTO_CATEGORY_OPTIONS } from 'constants/global'
 import Images from "constants/images"
 import { FastField, Form, Formik } from "formik";
-import Select from 'react-select';
 import InputField from "custom-field/InputField";
 import SelectField from "custom-field/SelectField";
 
-console.log(PHOTO_CATEGORY_OPTIONS);
 
 function PhotoForm(props) {
 
@@ -43,17 +41,6 @@ function PhotoForm(props) {
                             options={PHOTO_CATEGORY_OPTIONS}
                         />  
 
-                        {/* <FormGroup>
-                            <Label for="categoryId">Category</Label>
-
-                            <Select
-                                id="categoryId"
-                                name="categoryId"
-                                placeholder="What's your photo category?"
-                                options={PHOTO_CATEGORY_OPTIONS}
-                            />
-                        </FormGroup> */}
-
                         <FormGroup>
                             <Label >Photo</Label>
 
@@ -62,7 +49,7 @@ function PhotoForm(props) {
                             </div>
 
                             <div>
-                                <img width="200px" height="200px" src={Images.COLORFUL_BG}  alt="colorful photo"/>
+                                <img width="200px" height="200px" src={Images.COLORFUL_BG}  alt="colorful"/>
                             </div>
                         </FormGroup>
 
