@@ -16,7 +16,8 @@
     "react-select": "^5.2.2",
     "reactstrap": "^9.0.1",
     "sass": "^1.49.9",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "yup": "^0.32.11"
   },
   "scripts": {
     "start": "react-scripts start",

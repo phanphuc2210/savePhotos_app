@@ -4,6 +4,7 @@ import Images from "constants/images"
 import { FastField, Form, Formik } from "formik";
 import InputField from "custom-field/InputField";
 import SelectField from "custom-field/SelectField";
+import RandomPhotoField from "custom-field/RandomPhotoField";
 
 
 function PhotoForm(props) {
@@ -11,11 +12,13 @@ function PhotoForm(props) {
     const initialValues = {
         title: '',
         categoryId: null,
+        photo: ''
     }
 
     return (
         <Formik
             initialValues={initialValues}
+            onSubmit={values => console.log("Submit", values)}
         >
             {formikProps => {
                 // do something here
@@ -41,20 +44,15 @@ function PhotoForm(props) {
                             options={PHOTO_CATEGORY_OPTIONS}
                         />  
 
-                        <FormGroup>
-                            <Label >Photo</Label>
+                        <FastField
+                            name="photo"
+                            component={RandomPhotoField}
 
-                            <div>
-                                <Button type="button" outline color="primary">Random a photo</Button>
-                            </div>
-
-                            <div>
-                                <img width="200px" height="200px" src={Images.COLORFUL_BG}  alt="colorful"/>
-                            </div>
-                        </FormGroup>
+                            label="Photo"
+                        />
 
                         <FormGroup>
-                            <Button color="primary">Add to album</Button>
+                            <Button type="submit" color="primary">Add to album</Button>
                         </FormGroup>
                     </Form>
                 )

@@ -5,7 +5,6 @@ import Select from 'react-select';
 function SelectField(props) {
     const { field, options, label, placeholder, disabled } = props;
     const { name, value } = field;
-    console.log(options);
   
     const selectedOption = options.find(option => option.value === value);
   
