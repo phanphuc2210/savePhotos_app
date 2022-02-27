@@ -1,4 +1,5 @@
-import { FormGroup, Input, Label } from "reactstrap"
+import { ErrorMessage } from "formik"
+import { FormFeedback, FormGroup, Input, Label } from "reactstrap"
 
 
 function InputField(props) {
@@ -8,6 +9,8 @@ function InputField(props) {
         type, label, placeholder, disabled,
     } = props
     const { name, value, onChange, onBlur} = field
+    const {errors, touched} = form
+    const showError = errors[name] && touched[name]
 
     return (
         <FormGroup>
@@ -20,7 +23,11 @@ function InputField(props) {
                 type={type || 'text'}
                 disabled={disabled || false}
                 placeholder={placeholder}
+
+                invalid={showError}
             />
+
+            <ErrorMessage name={name} component={FormFeedback}/>
         </FormGroup>
     )
 }

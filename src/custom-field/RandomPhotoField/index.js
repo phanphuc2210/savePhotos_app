@@ -1,9 +1,12 @@
 import RandomPhoto from "components/RandomPhoto"
-import { FormGroup, Label } from "reactstrap"
+import { ErrorMessage } from "formik"
+import { FormFeedback, FormGroup, Label } from "reactstrap"
 
 function RandomPhotoField(props) {
     const { field, form, label } = props
     const { name, value, onBlur } = field
+    const {errors, touched} = form
+    const showError = errors[name] && touched[name]
 
     const handleImageUrlChange = (newImageUrl) => {
         form.setFieldValue(name, newImageUrl)
@@ -18,7 +21,11 @@ function RandomPhotoField(props) {
                 imageUrl={value}
                 onImageUrlChange={handleImageUrlChange}
                 onRandomButtonBlur={onBlur}
+
+                className={showError ? 'is-invalid' : ''}
             />
+
+            <ErrorMessage name={name} component={FormFeedback}/>    
         </FormGroup>
     )
 }

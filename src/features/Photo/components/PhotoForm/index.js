@@ -1,7 +1,7 @@
 import { Button, FormGroup, Label } from "reactstrap"
 import { PHOTO_CATEGORY_OPTIONS } from 'constants/global'
-import Images from "constants/images"
 import { FastField, Form, Formik } from "formik";
+import * as Yup from "yup"
 import InputField from "custom-field/InputField";
 import SelectField from "custom-field/SelectField";
 import RandomPhotoField from "custom-field/RandomPhotoField";
@@ -15,9 +15,26 @@ function PhotoForm(props) {
         photo: ''
     }
 
+    const validationSchema = Yup.object().shape({
+        title: Yup.string().required('This field is required'),
+
+        categoryId: Yup.number()
+            .required('This field is required')
+            .nullable(),
+
+        photo: Yup.string().required('This field is required'),
+
+        // photo: Yup.string().when('categoryId', {
+        //     is: 1,
+        //     then: Yup.string().required('This field is required'),
+        //     otherwise: Yup.string().notRequired(),
+        // })
+    })
+
     return (
         <Formik
             initialValues={initialValues}
+            validationSchema={validationSchema}
             onSubmit={values => console.log("Submit", values)}
         >
             {formikProps => {
