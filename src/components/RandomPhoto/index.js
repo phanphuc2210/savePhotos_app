@@ -33,7 +33,13 @@ function RandomPhoto(props) {
             </div>
 
             <div className={clsx(styles.randomPhoto__photo)}>
-                {imageUrl && <img src={imageUrl} alt="Ooops... not found. Please click button again."/>}
+                {imageUrl && 
+                    <img 
+                        src={imageUrl} 
+                        alt="Ooops... not found. Please click button again."
+                        onError={handleRandomPhotoClick}
+                    />
+                }
             </div>
 
         </div>

@@ -9,6 +9,7 @@ function Photo() {
         <Routes>
             <Route path='' element={<Mainpage/>}/>
             <Route path="add" element={<AddEditPage/>}/>
+            <Route path=":photoId" element={<AddEditPage/>}/>
 
             <Route path="*" element={<NotFound/>}/>
         </Routes>
