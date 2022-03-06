@@ -9,6 +9,9 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import './App.css';
 import { Button } from 'reactstrap';
+import { useDispatch } from 'react-redux';
+import { getMe } from 'app/userSlice';
+import { unwrapResult } from '@reduxjs/toolkit';
 
 
 // Configure Firebase.
@@ -23,6 +26,7 @@ firebase.initializeApp(config);
 function App() {
 
   const [productList, setProductList] = useState([])
+  const dispatch = useDispatch()
 
   useEffect(() => {
     const fetchProductList = async() => {
@@ -51,8 +55,18 @@ function App() {
         return
       }
 
-      // console.log('Logged in user: ', user.displayName);
+      // Get me when signed in
+      try {
+        const action = getMe() 
+        const actionResult = await dispatch(action)
+        const currentUser = unwrapResult(actionResult)
+        console.log('Logged in user: ',currentUser);
+      } catch (error) {
+        console.log('Failed to login ', error.message);
+        //show toast error
+      }
 
+      // console.log('Logged in user: ', user.displayName);
       // const token = await user.getIdToken()
       // console.log('Logged in user token', token);
     });
